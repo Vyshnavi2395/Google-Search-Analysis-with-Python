@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Search Analysis</title>
+    <style>
+        body { font-family: Arial; background: #f9f9f9; margin: 20px; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { padding: 10px; width: 300px; }
+        input[type="submit"] { padding: 10px 20px; }
+        .results, .analysis { background: #fff; padding: 15px; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Google Search Analysis</h1>
+    <form method="POST" action="/analyze">
+        <input type="text" name="query" placeholder="Enter a keyword..." required>
+        <input type="submit" value="Analyze">
+    </form>
+
+    {% if query %}
+    <div class="results">
+        <h2>Results for "{{ query }}"</h2>
+        <ul>
+            {% for title in results %}
+            <li>{{ title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="analysis">
+        <h2>Top Words in Titles</h2>
+        <ul>
+            {% for word, count in analysis %}
+            <li><b>{{ word }}</b>: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+</html>
 
